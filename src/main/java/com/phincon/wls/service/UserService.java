@@ -1,8 +1,7 @@
 package com.phincon.wls.service;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.phincon.wls.model.dto.response.UserResponse;
+import com.phincon.wls.model.dto.response.jaxb.UserResponse;
 import com.phincon.wls.model.dto.response.jackson.User;
 
 import javax.xml.bind.JAXBException;
