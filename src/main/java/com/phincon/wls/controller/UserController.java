@@ -1,10 +1,15 @@
 package com.phincon.wls.controller;
 
+import com.phincon.wls.model.dto.request.UserRequest;
+import com.phincon.wls.model.dto.response.DataResponse;
+import com.phincon.wls.model.dto.response.UserResponse;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.phincon.wls.model.DataResponse;
 import com.phincon.wls.model.UserRequest;
 import com.phincon.wls.model.UserResponse;
 import com.phincon.wls.model.xml.User;
+
 import com.phincon.wls.service.UserService;
 import com.phincon.wls.utils.UserBinding;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +25,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import javax.xml.bind.JAXBException;
+
 @RestController
 @RequestMapping("/v1")
 public class UserController {
@@ -33,8 +40,7 @@ public class UserController {
     private RestTemplate restTemplate;
 
     @PostMapping("/user")
-    public ResponseEntity<DataResponse<UserResponse>> getUserDetail(@RequestBody UserRequest userRequest) {
-
+    public ResponseEntity<DataResponse<UserResponse>> getUserDetail(@RequestBody UserRequest userRequest) throws JAXBException {
 
         UserResponse userResponse = userService.getUser(userRequest.getAcctNbr(), userRequest.getAcctType());
 

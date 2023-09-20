@@ -1,4 +1,4 @@
-package com.phincon.wls.model;
+package com.phincon.wls.model.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
