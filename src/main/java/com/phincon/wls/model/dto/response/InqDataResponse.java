@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
 public class InqDataResponse {
     private UserResponse result;
 
-    @XmlElement(name = "result")
+    @XmlElement(name = "return")
     public UserResponse getResult() {
         return result;
     }
