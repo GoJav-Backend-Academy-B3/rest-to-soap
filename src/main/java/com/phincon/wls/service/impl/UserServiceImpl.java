@@ -1,11 +1,19 @@
 package com.phincon.wls.service.impl;
 
+
 import com.phincon.wls.model.dto.request.InqDataRequest;
 import com.phincon.wls.model.dto.request.SoapBodyRequest;
 import com.phincon.wls.model.dto.request.SoapEnvelopeRequest;
 import com.phincon.wls.model.dto.request.UserRequest;
 import com.phincon.wls.model.dto.response.SoapEnvelopeResponse;
 import com.phincon.wls.model.dto.response.UserResponse;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.phincon.wls.model.UserResponse;
+import com.phincon.wls.model.xml.Soap;
+import com.phincon.wls.model.xml.User;
+
 import com.phincon.wls.service.UserService;
 import com.phincon.wls.utils.CustomNamespacePrefixMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,5 +124,13 @@ public class UserServiceImpl implements UserService {
         soapBodyRequest.setInqDataRequest(inqDataRequest);
         soapEnvelopeRequest.setSoapBodyRequest(soapBodyRequest);
         return soapEnvelopeRequest;
+    }
+
+    @Override
+    public User getUserNative(String request) throws JsonProcessingException {
+        XmlMapper xmlMapper = new XmlMapper();
+        Soap result = xmlMapper.readValue(request, Soap.class);
+
+        return result.getBody().getDataResponse().getUser();
     }
 }
