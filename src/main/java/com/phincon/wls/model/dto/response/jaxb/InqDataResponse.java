@@ -1,4 +1,4 @@
-package com.phincon.wls.model.dto.response;
+package com.phincon.wls.model.dto.response.jaxb;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
 public class InqDataResponse {
     private UserResponse result;
 
-    @XmlElement(name = "result")
+    @XmlElement(name = "return")
     public UserResponse getResult() {
         return result;
     }

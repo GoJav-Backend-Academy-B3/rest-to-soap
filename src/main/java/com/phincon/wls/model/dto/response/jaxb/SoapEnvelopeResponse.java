@@ -1,4 +1,4 @@
-package com.phincon.wls.model.dto.response;
+package com.phincon.wls.model.dto.response.jaxb;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

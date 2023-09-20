@@ -1,8 +1,8 @@
 package com.phincon.wls.controller;
 
 import com.phincon.wls.model.dto.request.UserRequest;
-import com.phincon.wls.model.dto.response.DataResponse;
-import com.phincon.wls.model.dto.response.UserResponse;
+import com.phincon.wls.model.dto.response.jaxb.DataResponse;
+import com.phincon.wls.model.dto.response.jaxb.UserResponse;
 import com.phincon.wls.model.dto.response.jackson.User;
 import com.phincon.wls.service.UserService;
 import com.phincon.wls.utils.UserBinding;

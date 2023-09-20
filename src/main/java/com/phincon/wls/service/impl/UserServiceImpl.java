@@ -1,14 +1,13 @@
 package com.phincon.wls.service.impl;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.phincon.wls.model.dto.request.InqDataRequest;
 import com.phincon.wls.model.dto.request.SoapBodyRequest;
 import com.phincon.wls.model.dto.request.SoapEnvelopeRequest;
 import com.phincon.wls.model.dto.request.UserRequest;
-import com.phincon.wls.model.dto.response.SoapEnvelopeResponse;
-import com.phincon.wls.model.dto.response.UserResponse;
+import com.phincon.wls.model.dto.response.jaxb.SoapEnvelopeResponse;
+import com.phincon.wls.model.dto.response.jaxb.UserResponse;
 import com.phincon.wls.model.dto.response.jackson.Soap;
 import com.phincon.wls.model.dto.response.jackson.User;
 import com.phincon.wls.service.UserService;
@@ -42,20 +41,11 @@ public class UserServiceImpl implements UserService {
 
         String soapRequestXML = getXmlString(soapEnvelopeRequest);
 
-        // Print or use the XML string as needed
-        System.out.println(soapRequestXML);
-
         String xmlResult = getUserReponseXml(soapRequestXML);
-
-        System.out.println(xmlResult);
 
         SoapEnvelopeResponse soapEnvelopeResponse = convertXmlToSoapEnvelopeResponse(xmlResult);
 
-        System.out.println(soapEnvelopeResponse);
-        System.out.println(soapEnvelopeResponse.getSoapBody().getInqData().getResult());
-
         return soapEnvelopeResponse.getSoapBody().getInqData().getResult();
-//        return null;
     }
 
     private SoapEnvelopeResponse convertXmlToSoapEnvelopeResponse(String xmlResult) throws JAXBException {
