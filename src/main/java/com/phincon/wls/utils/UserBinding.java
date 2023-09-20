@@ -2,7 +2,7 @@ package com.phincon.wls.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.phincon.wls.model.UserRequest;
+import com.phincon.wls.model.dto.request.UserRequest;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -20,9 +20,10 @@ public class UserBinding {
         JsonNode jsonNode = new ObjectMapper().readTree(user);
 
         // Create a DOM Document
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document document = dBuilder.newDocument();
+        Document document = DocumentBuilderFactory
+                .newInstance()
+                .newDocumentBuilder()
+                .newDocument();
 
         // Create SOAP Envelope
         Element envelope = document.createElement("soap:Envelope");
@@ -53,9 +54,8 @@ public class UserBinding {
 
         // Convert the DOM Document to a String
         StringWriter stringWriter = new StringWriter();
-        DOMSource domSource = new DOMSource(document);
-        StreamResult streamResult = new StreamResult(stringWriter);
-        TransformerFactory.newInstance().newTransformer().transform(domSource, streamResult);
+        TransformerFactory.newInstance().newTransformer().transform(
+                new DOMSource(document),  new StreamResult(stringWriter));
 
         return stringWriter.toString();
     }
