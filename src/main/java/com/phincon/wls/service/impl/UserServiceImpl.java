@@ -93,9 +93,6 @@ public class UserServiceImpl implements UserService {
 
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-        // Remove the standalone attribute
-//        marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
-
         // Set the custom NamespacePrefixMapper
         marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new CustomNamespacePrefixMapper());
 
@@ -117,7 +114,7 @@ public class UserServiceImpl implements UserService {
         SoapBodyRequest soapBodyRequest = new SoapBodyRequest();
         InqDataRequest inqDataRequest = new InqDataRequest();
 
-        // Assign data to envelope
+        // Assign data to soapEnvelopeRequest
         user.setAcctNbr(accNumber);
         user.setAcctType(accType);
         inqDataRequest.setUserRequest(user);
