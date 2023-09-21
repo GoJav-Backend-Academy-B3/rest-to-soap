@@ -6,12 +6,13 @@ import com.phincon.wls.model.dto.request.InqDataRequest;
 import com.phincon.wls.model.dto.request.SoapBodyRequest;
 import com.phincon.wls.model.dto.request.SoapEnvelopeRequest;
 import com.phincon.wls.model.dto.request.UserRequest;
-import com.phincon.wls.model.dto.response.jaxb.SoapEnvelopeResponse;
-import com.phincon.wls.model.dto.response.jaxb.UserResponse;
 import com.phincon.wls.model.dto.response.jackson.Soap;
 import com.phincon.wls.model.dto.response.jackson.User;
+import com.phincon.wls.model.dto.response.jaxb.SoapEnvelopeResponse;
+import com.phincon.wls.model.dto.response.jaxb.UserResponse;
 import com.phincon.wls.service.UserService;
 import com.phincon.wls.utils.CustomNamespacePrefixMapper;
+import com.phincon.wls.utils.UserBinding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
@@ -41,11 +42,19 @@ public class UserServiceImpl implements UserService {
 
         String soapRequestXML = getXmlString(soapEnvelopeRequest);
 
-        String xmlResult = getUserReponseXml(soapRequestXML);
+        String xmlResult = getUserResponseXml(soapRequestXML);
 
         SoapEnvelopeResponse soapEnvelopeResponse = convertXmlToSoapEnvelopeResponse(xmlResult);
 
         return soapEnvelopeResponse.getSoapBody().getInqData().getResult();
+    }
+
+    @Override
+    public User getUserNative(UserRequest request) throws Exception {
+        String resultBinding = UserBinding.jsonToSoap(request);
+        String resultEntity = getUserResponseXml(resultBinding);
+        return new XmlMapper().readValue(resultEntity, Soap.class)
+                .getBody().getDataResponse().getUser();
     }
 
     private SoapEnvelopeResponse convertXmlToSoapEnvelopeResponse(String xmlResult) throws JAXBException {
@@ -57,7 +66,7 @@ public class UserServiceImpl implements UserService {
         return (SoapEnvelopeResponse) unmarshaller.unmarshal(reader);
     }
 
-    private String getUserReponseXml(String soapRequestXML) {
+    private String getUserResponseXml(String soapRequestXML) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
 
@@ -111,13 +120,5 @@ public class UserServiceImpl implements UserService {
         soapBodyRequest.setInqDataRequest(inqDataRequest);
         soapEnvelopeRequest.setSoapBodyRequest(soapBodyRequest);
         return soapEnvelopeRequest;
-    }
-
-    @Override
-    public User getUserNative(String request) throws Exception {
-        XmlMapper xmlMapper = new XmlMapper();
-        Soap result = xmlMapper.readValue(request, Soap.class);
-
-        return result.getBody().getDataResponse().getUser();
     }
 }
