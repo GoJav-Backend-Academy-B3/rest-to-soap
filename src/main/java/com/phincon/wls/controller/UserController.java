@@ -17,7 +17,6 @@ import javax.xml.bind.JAXBException;
 @RestController
 @RequestMapping("/v1")
 public class UserController {
-    final String API_SOAP_URL = "http://localhost:8084/soap";
 
     @Autowired
     private UserService userService;
