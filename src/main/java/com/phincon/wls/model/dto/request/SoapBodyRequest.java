@@ -8,13 +8,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-@XmlRootElement
+@XmlRootElement(namespace = "http://inqdata.wsbeans.iseries/")
 @ToString
 public class SoapBodyRequest {
 
     private InqDataRequest inqDataRequest;
 
-    @XmlElement(name = "inqdata")
+    @XmlElement(name = "inqdata", namespace = "http://inqdata.wsbeans.iseries/")
     public InqDataRequest getInqDataRequest() {
         return inqDataRequest;
     }

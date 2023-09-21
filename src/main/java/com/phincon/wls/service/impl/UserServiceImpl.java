@@ -14,6 +14,7 @@ import com.phincon.wls.service.UserService;
 import com.phincon.wls.utils.CustomNamespacePrefixMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -34,6 +35,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     @Qualifier("config")
     private RestTemplate restTemplate;
+
+    @Value("${soap.api.url}")
+    private String soapApiUrl;
 
     @Override
     public UserResponse getUser(String accNumber, String accType) throws JAXBException {
@@ -64,7 +68,7 @@ public class UserServiceImpl implements UserService {
         HttpEntity<String> requestEntity = new HttpEntity<>(soapRequestXML, headers);
 
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(
-                "http://localhost:8084/soap", // Replace with your SOAP service URL
+                soapApiUrl, // Replace with your SOAP service URL
                 requestEntity,
                 String.class
         );
@@ -83,7 +87,7 @@ public class UserServiceImpl implements UserService {
         // Remove the standalone attribute
 //        marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
 
-        // Set the custom NamespacePrefixMapper to rename "ns2" to "soap"
+        // Set the custom NamespacePrefixMapper
         marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new CustomNamespacePrefixMapper());
 
         // Create a StringWriter to capture the XML
