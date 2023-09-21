@@ -1,6 +1,5 @@
 package com.phincon.wls.utils;
 
-
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 
 public class CustomNamespacePrefixMapper extends NamespacePrefixMapper {
