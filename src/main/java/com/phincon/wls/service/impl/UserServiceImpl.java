@@ -1,13 +1,11 @@
 package com.phincon.wls.service.impl;
 
 
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.phincon.wls.model.dto.request.InqDataRequest;
 import com.phincon.wls.model.dto.request.SoapBodyRequest;
 import com.phincon.wls.model.dto.request.SoapEnvelopeRequest;
 import com.phincon.wls.model.dto.request.UserRequest;
-import com.phincon.wls.model.dto.response.jackson.Soap;
-import com.phincon.wls.model.dto.response.jackson.User;
+import com.phincon.wls.model.dto.response.User;
 import com.phincon.wls.model.dto.response.jaxb.SoapEnvelopeResponse;
 import com.phincon.wls.model.dto.response.jaxb.UserResponse;
 import com.phincon.wls.service.UserService;
@@ -57,8 +55,7 @@ public class UserServiceImpl implements UserService {
     public User getUserNative(UserRequest request) throws Exception {
         String resultBinding = UserBinding.jsonToSoap(request);
         String resultEntity = getUserResponseXml(resultBinding);
-        return new XmlMapper().readValue(resultEntity, Soap.class)
-                .getBody().getDataResponse().getUser();
+        return UserBinding.parseXML(resultEntity);
     }
 
     private SoapEnvelopeResponse convertXmlToSoapEnvelopeResponse(String xmlResult) throws JAXBException {

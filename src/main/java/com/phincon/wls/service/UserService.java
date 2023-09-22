@@ -2,7 +2,7 @@ package com.phincon.wls.service;
 
 
 import com.phincon.wls.model.dto.request.UserRequest;
-import com.phincon.wls.model.dto.response.jackson.User;
+import com.phincon.wls.model.dto.response.User;
 import com.phincon.wls.model.dto.response.jaxb.UserResponse;
 
 import javax.xml.bind.JAXBException;
