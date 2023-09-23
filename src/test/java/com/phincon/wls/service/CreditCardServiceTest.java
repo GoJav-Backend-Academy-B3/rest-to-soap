@@ -25,6 +25,7 @@ import com.phincon.wls.model.dto.response.CreditCardResponse;
 import com.phincon.wls.model.dto.response.CreditCardResponseHeader;
 import com.phincon.wls.model.entity.CifNumber;
 import com.phincon.wls.model.entity.CreditCard;
+import com.phincon.wls.service.impl.CreditCardServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class CreditCardServiceTest {
@@ -82,8 +83,8 @@ public class CreditCardServiceTest {
     @DisplayName("Request Credit Card with CIF should return data")
     public void requestCreditCardCIF_data() throws Exception {
         final HttpEntity<CreditCardRequest> request = new HttpEntity<>(sampleRequest);
-        Mockito.when(restTemplate.exchange(Mockito.eq(wsCreditCardUrl), Mockito.eq(HttpMethod.POST), Mockito.any(),
-                CreditCardResponse.class))
+        Mockito.when(restTemplate.exchange(Mockito.eq(wsCreditCardUrl), Mockito.eq(HttpMethod.POST), Mockito.eq(request),
+                Mockito.eq(CreditCardResponse.class)))
                 .thenReturn(new ResponseEntity<>(sampleResponse, HttpStatus.OK));
 
         final List<CreditCard> result = service.queryCreditCard(cifNumber);
