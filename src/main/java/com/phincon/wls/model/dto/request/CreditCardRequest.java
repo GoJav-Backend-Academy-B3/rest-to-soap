@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreditCardRequest {
     CreditCardRequestHeader rqHeader;
-    CreditCardRqBody rqBody;
+    CreditCardRequestBody rqBody;
 }

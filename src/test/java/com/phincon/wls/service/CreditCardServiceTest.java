@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.phincon.wls.model.dto.request.CreditCardRequest;
-import com.phincon.wls.model.dto.request.CreditCardRqBody;
+import com.phincon.wls.model.dto.request.CreditCardRequestBody;
 import com.phincon.wls.model.dto.request.CreditCardRequestHeader;
 import com.phincon.wls.model.dto.response.CreditCardResponse;
 import com.phincon.wls.model.dto.response.CreditCardResponseHeader;
@@ -45,7 +45,7 @@ public class CreditCardServiceTest {
     private final CifNumber cif = new CifNumber("0002917054");
     private final CreditCardRequest sampleRequest = CreditCardRequest.builder()
             .rqHeader(rqHeader)
-            .rqBody(CreditCardRqBody.byCif(cif))
+            .rqBody(CreditCardRequestBody.byCif(cif))
             .build();
 
     private final CreditCardResponse sampleResponse = CreditCardResponse.builder()
