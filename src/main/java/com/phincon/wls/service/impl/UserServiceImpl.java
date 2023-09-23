@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserNative(UserRequest request) throws Exception {
-        String resultBinding = UserBinding.jsonToSoap(request);
+        String resultBinding = UserBinding.parseJSON(request);
         String resultEntity = getUserResponseXml(resultBinding);
         return UserBinding.parseXML(resultEntity);
     }

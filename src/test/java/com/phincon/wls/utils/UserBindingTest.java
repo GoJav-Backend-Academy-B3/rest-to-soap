@@ -19,7 +19,7 @@ public class UserBindingTest {
 
     @Test
     public void testJsonToSoap_thenCorrect() throws Exception {
-        String soapXml = UserBinding.jsonToSoap(userRequest);
+        String soapXml = UserBinding.parseJSON(userRequest);
 
         String expectedSoapXml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
                 + "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">"

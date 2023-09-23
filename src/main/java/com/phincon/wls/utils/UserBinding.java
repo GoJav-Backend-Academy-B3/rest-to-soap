@@ -17,7 +17,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 public class UserBinding {
-    public static String jsonToSoap(UserRequest request) throws Exception {
+    public static String parseJSON(UserRequest request) throws Exception {
         String user = new ObjectMapper().writeValueAsString(request);
         JsonNode jsonNode = new ObjectMapper().readTree(user);
 
