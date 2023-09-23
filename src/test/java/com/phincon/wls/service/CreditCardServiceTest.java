@@ -42,10 +42,10 @@ public class CreditCardServiceTest {
             .timestamp("2023-09-19 15:48:57.821").build();
 
     // CIF request
-    private final CifNumber cif = new CifNumber("0002917054");
+    private final CifNumber cifNumber = new CifNumber("0002917054");
     private final CreditCardRequest sampleRequest = CreditCardRequest.builder()
             .rqHeader(rqHeader)
-            .rqBody(CreditCardRequestBody.byCif(cif))
+            .rqBody(CreditCardRequestBody.byCif(cifNumber))
             .build();
 
     private final CreditCardResponse sampleResponse = CreditCardResponse.builder()
@@ -83,7 +83,7 @@ public class CreditCardServiceTest {
                 CreditCardResponse.class))
                 .thenReturn(new ResponseEntity<>(sampleResponse, HttpStatus.OK));
 
-        final List<CreditCard> result = service.queryCreditCard(cif);
+        final List<CreditCard> result = service.queryCreditCard(cifNumber);
 
         Assertions.assertTrue(CollectionUtils.isEqualCollection(sampleResponse.getRsBody(), result));
     }
