@@ -6,9 +6,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -24,6 +26,7 @@ import com.phincon.wls.model.dto.response.CreditCardResponseHeader;
 import com.phincon.wls.model.entity.CifNumber;
 import com.phincon.wls.model.entity.CreditCard;
 
+@ExtendWith(MockitoExtension.class)
 public class CreditCardServiceTest {
 
     @Value("${ws.url.creditcard}")
