@@ -1,6 +1,7 @@
 package com.phincon.wls.utils;
 
 import com.phincon.wls.model.dto.request.UserRequest;
+import com.phincon.wls.model.dto.response.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,47 @@ public class UserBindingTest {
                 + "</soap:Envelope>";
 
         assertEquals(expectedSoapXml, soapXml);
+    }
+
+    @Test
+    public void testParseXML_thenCorrect() throws Exception {
+        String responseXML = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                "  <soap:Body>\n" +
+                "    <inqdataResponse xmlns=\"http://inqdata.wsbeans.iseries/\">\n" +
+                "      <return>\n" +
+                "        <ACCTNBR>01234</ACCTNBR>\n" +
+                "        <ACCTTYPE>BANK</ACCTTYPE>\n" +
+                "        <ADDRESS1>string</ADDRESS1>\n" +
+                "        <ADDRESS2>string</ADDRESS2>\n" +
+                "        <ADDRESS3>string</ADDRESS3>\n" +
+                "        <ADDRESS4>string</ADDRESS4>\n" +
+                "        <ADDRESS5>string</ADDRESS5>\n" +
+                "        <CIF>string</CIF>\n" +
+                "        <CTCOTHER>string</CTCOTHER>\n" +
+                "        <DOB>string</DOB>\n" +
+                "        <FAXNBR>string</FAXNBR>\n" +
+                "        <FULLNAME>string</FULLNAME>\n" +
+                "        <HOMEPH>string</HOMEPH>\n" +
+                "        <IDENTITY>string</IDENTITY>\n" +
+                "        <KEYPARAM>string</KEYPARAM>\n" +
+                "        <MAIDENNAME>string</MAIDENNAME>\n" +
+                "        <MOBILEPH>string</MOBILEPH>\n" +
+                "        <NPWP>string</NPWP>\n" +
+                "        <OFFICEPH>string</OFFICEPH>\n" +
+                "        <POB>string</POB>\n" +
+                "        <PRIORITY>string</PRIORITY>\n" +
+                "        <RESP>string</RESP>\n" +
+                "        <ZIPCODE>string</ZIPCODE>\n" +
+                "      </return>\n" +
+                "    </inqdataResponse>\n" +
+                "  </soap:Body>\n" +
+                "</soap:Envelope>\n";
+
+        User user = UserBinding.parseXML(responseXML);
+
+        assertEquals("01234", user.getAcctNbr());
+        assertEquals("BANK", user.getAcctType());
     }
 }
 
