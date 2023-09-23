@@ -13,14 +13,14 @@ import javax.xml.bind.annotation.XmlType;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @XmlType(propOrder = {"result"})
 public class InqDataResponse {
-    private UserResponse result;
+    private AccountResponse result;
 
     @XmlElement(name = "return")
-    public UserResponse getResult() {
+    public AccountResponse getResult() {
         return result;
     }
 
-    public void setResult(UserResponse result) {
+    public void setResult(AccountResponse result) {
         this.result = result;
     }
 }
