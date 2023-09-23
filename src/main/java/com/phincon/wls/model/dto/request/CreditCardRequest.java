@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class CreditCardRequest {
-    CreditCardRqHeader rqHeader;
+    CreditCardRequestHeader rqHeader;
     CreditCardRqBody rqBody;
 }

@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.phincon.wls.model.dto.request.CreditCardRequest;
 import com.phincon.wls.model.dto.request.CreditCardRqBody;
-import com.phincon.wls.model.dto.request.CreditCardRqHeader;
+import com.phincon.wls.model.dto.request.CreditCardRequestHeader;
 import com.phincon.wls.model.dto.response.CreditCardResponse;
 import com.phincon.wls.model.dto.response.CreditCardResponseHeader;
 import com.phincon.wls.model.entity.CifNumber;
@@ -35,7 +35,7 @@ public class CreditCardServiceTest {
     @InjectMocks
     private final CreditCardService service = new CreditCardServiceImpl();
 
-    private final CreditCardRqHeader rqHeader = CreditCardRqHeader.builder()
+    private final CreditCardRequestHeader rqHeader = CreditCardRequestHeader.builder()
             .service("listCustomerCIFCardSummaryListInput")
             .traceId("ABCDEFHIJKLMNOPQRSTUVWXY7")
             .channel("CC")

@@ -1,6 +1,6 @@
 package com.phincon.wls.model.dto.response;
 
-import com.phincon.wls.model.dto.request.CreditCardRqHeader;
+import com.phincon.wls.model.dto.request.CreditCardRequestHeader;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,5 +17,5 @@ public class CreditCardResponseHeader {
     String statusDesc;
     int listCount;
     String listKey;
-    CreditCardRqHeader rqHeader;
+    CreditCardRequestHeader rqHeader;
 }
