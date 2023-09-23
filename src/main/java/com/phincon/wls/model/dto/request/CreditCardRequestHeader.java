@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreditCardRqHeader {
+public class CreditCardRequestHeader {
     private String service;
     private String traceId;
     private String channel;
