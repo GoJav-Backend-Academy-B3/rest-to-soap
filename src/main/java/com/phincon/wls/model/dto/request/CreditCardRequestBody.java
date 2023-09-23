@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CreditCardRqBody {
+public class CreditCardRequestBody {
     /**
      * Construct CreditCardRqBody by CIF number.
      *
@@ -18,8 +18,8 @@ public class CreditCardRqBody {
      * @param cif the CIF number
      * @return CreditCardRqBody
      */
-    public static CreditCardRqBody byCif(CifNumber cif) {
-        return new CreditCardRqBody(cif.getCif());
+    public static CreditCardRequestBody byCif(CifNumber cif) {
+        return new CreditCardRequestBody(cif.getCif());
     }
 
     /**
@@ -31,8 +31,8 @@ public class CreditCardRqBody {
      * @param cardNumber the card number
      * @return CreditCardRqBody
      */
-    public static CreditCardRqBody byCardNumber(CardNumber cardNumber) {
-        return new CreditCardRqBody(cardNumber.getCardNumber());
+    public static CreditCardRequestBody byCardNumber(CardNumber cardNumber) {
+        return new CreditCardRequestBody(cardNumber.getCardNumber());
     }
 
     String cust;
