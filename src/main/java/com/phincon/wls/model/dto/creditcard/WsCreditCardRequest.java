@@ -5,15 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Builder
-public class CreditCardResponseHeader {
-    String timestamp;
-    String status;
-    String statusDesc;
-    int listCount;
-    String listKey;
-    CreditCardRequestHeader rqHeader;
+public class WsCreditCardRequest {
+    WsCreditCardRequestHeader rqHeader;
+    WsCreditCardRequestBody rqBody;
 }

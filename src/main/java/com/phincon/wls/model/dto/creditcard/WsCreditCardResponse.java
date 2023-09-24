@@ -10,7 +10,7 @@ import lombok.Singular;
 
 @Data
 @Builder
-public class CreditCardResponse {
-    private CreditCardResponseHeader rsHeader;
+public class WsCreditCardResponse {
+    private WsCreditCardResponseHeader rsHeader;
     @Singular("card") private List<CreditCard> rsBody;
 }
