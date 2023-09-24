@@ -1,4 +1,4 @@
-package com.phincon.wls.model.dto.request;
+package com.phincon.wls.model.dto.creditcard;
 
 import com.phincon.wls.model.entity.CardNumber;
 import com.phincon.wls.model.entity.CifNumber;
