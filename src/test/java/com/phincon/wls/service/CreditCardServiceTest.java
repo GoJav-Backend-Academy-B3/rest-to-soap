@@ -18,11 +18,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.phincon.wls.model.dto.request.CreditCardRequest;
-import com.phincon.wls.model.dto.request.CreditCardRequestBody;
-import com.phincon.wls.model.dto.request.CreditCardRequestHeader;
-import com.phincon.wls.model.dto.response.CreditCardResponse;
-import com.phincon.wls.model.dto.response.CreditCardResponseHeader;
+import com.phincon.wls.model.dto.creditcard.CreditCardRequest;
+import com.phincon.wls.model.dto.creditcard.CreditCardRequestBody;
+import com.phincon.wls.model.dto.creditcard.CreditCardRequestHeader;
+import com.phincon.wls.model.dto.creditcard.CreditCardResponse;
+import com.phincon.wls.model.dto.creditcard.CreditCardResponseHeader;
 import com.phincon.wls.model.entity.CifNumber;
 import com.phincon.wls.model.entity.CreditCard;
 import com.phincon.wls.service.impl.CreditCardServiceImpl;
@@ -30,7 +30,7 @@ import com.phincon.wls.service.impl.CreditCardServiceImpl;
 @ExtendWith(MockitoExtension.class)
 public class CreditCardServiceTest {
 
-    @Value("${ws.url.creditcard}")
+    @Value("${ws.creditcard.url}")
     private String wsCreditCardUrl;
 
     @Mock
