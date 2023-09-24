@@ -1,4 +1,4 @@
-package com.phincon.wls.model.dto.response;
+package com.phincon.wls.model.dto.creditcard;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import lombok.Singular;
 
 @Data
 @Builder
-public class CreditCardResponse {
-    private CreditCardResponseHeader rsHeader;
+public class WsCreditCardResponse {
+    private WsCreditCardResponseHeader rsHeader;
     @Singular("card") private List<CreditCard> rsBody;
 }

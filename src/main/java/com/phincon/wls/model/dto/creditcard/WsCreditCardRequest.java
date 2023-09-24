@@ -1,4 +1,4 @@
-package com.phincon.wls.model.dto.request;
+package com.phincon.wls.model.dto.creditcard;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class CreditCardRequest {
-    CreditCardRequestHeader rqHeader;
-    CreditCardRequestBody rqBody;
+public class WsCreditCardRequest {
+    WsCreditCardRequestHeader rqHeader;
+    WsCreditCardRequestBody rqBody;
 }

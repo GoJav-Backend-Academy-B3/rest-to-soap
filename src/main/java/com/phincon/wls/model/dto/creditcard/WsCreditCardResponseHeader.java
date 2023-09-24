@@ -1,6 +1,4 @@
-package com.phincon.wls.model.dto.response;
-
-import com.phincon.wls.model.dto.request.CreditCardRequestHeader;
+package com.phincon.wls.model.dto.creditcard;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreditCardResponseHeader {
+public class WsCreditCardResponseHeader {
     String timestamp;
     String status;
     String statusDesc;
     int listCount;
     String listKey;
-    CreditCardRequestHeader rqHeader;
+    WsCreditCardRequestHeader rqHeader;
 }

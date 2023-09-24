@@ -1,4 +1,4 @@
-package com.phincon.wls.model.dto.request;
+package com.phincon.wls.model.dto.creditcard;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreditCardRequestHeader {
+public class WsCreditCardRequestHeader {
     private String service;
     private String traceId;
     private String channel;
