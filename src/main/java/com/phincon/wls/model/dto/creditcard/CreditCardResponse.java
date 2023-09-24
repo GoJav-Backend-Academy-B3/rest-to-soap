@@ -1,4 +1,4 @@
-package com.phincon.wls.model.dto.response;
+package com.phincon.wls.model.dto.creditcard;
 
 import java.util.List;
 

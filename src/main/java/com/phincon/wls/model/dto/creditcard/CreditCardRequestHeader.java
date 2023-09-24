@@ -1,4 +1,4 @@
-package com.phincon.wls.model.dto.request;
+package com.phincon.wls.model.dto.creditcard;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

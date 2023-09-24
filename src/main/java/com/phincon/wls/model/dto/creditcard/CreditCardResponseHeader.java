@@ -1,6 +1,4 @@
-package com.phincon.wls.model.dto.response;
-
-import com.phincon.wls.model.dto.request.CreditCardRequestHeader;
+package com.phincon.wls.model.dto.creditcard;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
