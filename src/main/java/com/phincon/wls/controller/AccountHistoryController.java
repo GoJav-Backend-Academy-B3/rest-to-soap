@@ -23,9 +23,9 @@ public class AccountHistoryController {
 
     @GetMapping("/{acctnbr}/{accttp}/{startdate}/{enddate}/{strindex}")
     public ResponseEntity<DataResponse<List<Mutasi>>> getAccountHistory(@PathVariable String acctnbr,
-            @PathVariable String accttp, @PathVariable String starttdate, @PathVariable String enddate,
+            @PathVariable String accttp, @PathVariable String startdate, @PathVariable String enddate,
             @PathVariable String strindex) {
-        final WsAccountHistoryRequest accountHistoryRequest = new WsAccountHistoryRequest(acctnbr, accttp, starttdate,
+        final WsAccountHistoryRequest accountHistoryRequest = new WsAccountHistoryRequest(acctnbr, accttp, startdate,
                 enddate, strindex);
         List<Mutasi> mutasis = service.queryAccountHistory(accountHistoryRequest);
 
