@@ -1,5 +1,6 @@
 package com.phincon.wls.controller;
 
+import com.phincon.wls.model.dto.request.AccountRequest;
 import com.phincon.wls.model.dto.response.jaxb.DataResponse;
 import com.phincon.wls.model.dto.response.jaxb.AccountResponse;
 import com.phincon.wls.service.AccountService;
@@ -20,7 +21,7 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping("/account")
-    public ResponseEntity<DataResponse<AccountResponse>> getAccountDetail(@RequestBody com.phincon.wls.model.dto.request.AccountResponse userRequest) throws JAXBException {
+    public ResponseEntity<DataResponse<AccountResponse>> getAccountDetail(@RequestBody AccountRequest userRequest) throws JAXBException {
 
         AccountResponse accountResponse = accountService.getAccount(userRequest.getAcctNbr(), userRequest.getAcctType());
 
@@ -29,7 +30,7 @@ public class AccountController {
 
     @PostMapping("/account-native")
     public ResponseEntity<DataResponse<com.phincon.wls.model.dto.response.ntv.AccountResponse>> getAccountDetailNative(
-            @RequestBody com.phincon.wls.model.dto.request.AccountResponse request)
+            @RequestBody AccountRequest request)
             throws Exception {
         return DataResponse.ok(accountService.getAccountNative(request));
     }

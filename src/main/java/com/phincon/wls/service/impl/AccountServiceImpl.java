@@ -1,6 +1,7 @@
 package com.phincon.wls.service.impl;
 
 
+import com.phincon.wls.model.dto.request.AccountRequest;
 import com.phincon.wls.model.dto.request.InqDataRequest;
 import com.phincon.wls.model.dto.request.SoapBodyRequest;
 import com.phincon.wls.model.dto.request.SoapEnvelopeRequest;
@@ -50,7 +51,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public com.phincon.wls.model.dto.response.ntv.AccountResponse getAccountNative(com.phincon.wls.model.dto.request.AccountResponse request) throws Exception {
+    public com.phincon.wls.model.dto.response.ntv.AccountResponse getAccountNative(AccountRequest request) throws Exception {
         String resultBinding = Bind.parseObject(request);
         String resultEntity = getUserResponseXml(resultBinding);
         return Bind.parseXML(resultEntity, com.phincon.wls.model.dto.response.ntv.AccountResponse.class);
@@ -104,7 +105,7 @@ public class AccountServiceImpl implements AccountService {
     private SoapEnvelopeRequest getSoapEnvelopeRequest(String accNumber, String accType) {
 
         // Create an instance of SoapEnvelope and set data
-        com.phincon.wls.model.dto.request.AccountResponse user = new com.phincon.wls.model.dto.request.AccountResponse();
+        AccountRequest user = new AccountRequest();
         SoapEnvelopeRequest soapEnvelopeRequest = new SoapEnvelopeRequest();
         SoapBodyRequest soapBodyRequest = new SoapBodyRequest();
         InqDataRequest inqDataRequest = new InqDataRequest();

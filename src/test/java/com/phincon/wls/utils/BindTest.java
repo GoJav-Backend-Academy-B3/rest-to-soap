@@ -1,17 +1,17 @@
 package com.phincon.wls.utils;
 
-import com.phincon.wls.model.dto.request.AccountResponse;
+import com.phincon.wls.model.dto.request.AccountRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BindTest {
-    private AccountResponse userRequest;
+    private AccountRequest userRequest;
 
     @BeforeEach
     public void setUp() {
-        userRequest = new AccountResponse();
+        userRequest = new AccountRequest();
         userRequest.setAcctNbr("test");
         userRequest.setAcctType("test");
     }

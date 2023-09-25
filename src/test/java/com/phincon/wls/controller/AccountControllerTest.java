@@ -2,6 +2,7 @@ package com.phincon.wls.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.phincon.wls.model.dto.request.AccountRequest;
 import com.phincon.wls.model.dto.response.jaxb.AccountResponse;
 import com.phincon.wls.service.AccountService;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,7 +48,7 @@ public class AccountControllerTest {
 
         // Mock the userService's getUser method to return the sample response
         lenient().when(accountService.getAccount("12345", "A")).thenReturn(accountResponse);
-        lenient().when(accountService.getAccountNative(any(com.phincon.wls.model.dto.request.AccountResponse.class))).thenReturn(user);
+        lenient().when(accountService.getAccountNative(any(AccountRequest.class))).thenReturn(user);
     }
 
     @Test
@@ -58,7 +59,7 @@ public class AccountControllerTest {
     @Test
     public void testGetAccountDetail() throws Exception {
         // Create a sample user request
-        com.phincon.wls.model.dto.request.AccountResponse userRequest = new com.phincon.wls.model.dto.request.AccountResponse();
+        AccountRequest userRequest = new AccountRequest();
         userRequest.setAcctNbr("12345");
         userRequest.setAcctType("A");
 
@@ -80,7 +81,7 @@ public class AccountControllerTest {
 
     @Test
     public void testGetAccountDetailNative() throws Exception {
-        com.phincon.wls.model.dto.request.AccountResponse userRequest = new com.phincon.wls.model.dto.request.AccountResponse();
+        AccountRequest userRequest = new AccountRequest();
         userRequest.setAcctNbr("12345");
         userRequest.setAcctType("A");
 
@@ -97,6 +98,6 @@ public class AccountControllerTest {
                 .andExpect(jsonPath("$.data.acct_type").value("A"));
 
         // Verify that the userService's getUser method was called with the correct arguments
-        verify(accountService, times(1)).getAccountNative(any(com.phincon.wls.model.dto.request.AccountResponse.class));
+        verify(accountService, times(1)).getAccountNative(any(AccountRequest.class));
     }
 }
