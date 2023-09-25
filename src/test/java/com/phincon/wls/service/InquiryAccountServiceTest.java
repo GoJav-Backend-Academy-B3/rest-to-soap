@@ -9,9 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +22,7 @@ import com.phincon.wls.model.entity.Account;
 import com.phincon.wls.model.entity.CifNumber;
 import com.phincon.wls.service.impl.InquiryAccountServiceImpl;
 
+@ExtendWith(MockitoExtension.class)
 @TestInstance(Lifecycle.PER_CLASS)
 public class InquiryAccountServiceTest {
 
@@ -53,7 +56,8 @@ public class InquiryAccountServiceTest {
     public void requestInquiryAccountCIFNumber_data() {
         CifNumber cif = cifNumber;
         final String urlTemplate = String.format("%s/INQACCT/{cifNbr}", wsInqaccUrl);
-        Mockito.when(restTemplate.getForObject(urlTemplate, WsInquiryAccountResponse.class, cif.getCif()))
+        Mockito.when(restTemplate.getForObject(Mockito.any(), Mockito.eq(WsInquiryAccountResponse.class),
+                Mockito.eq(cif.getCif())))
                 .thenReturn(sampleResponse);
 
         final List<Account> result = service.inquiryAccount(cif);
