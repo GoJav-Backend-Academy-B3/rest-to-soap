@@ -31,5 +31,5 @@ public class CreditCard {
     String cardAcLstPyDte;
     long cardAcCTDPyAmt;
     String cardCustomer;
-    String cardCif;
+    String cardCIF;
 }
