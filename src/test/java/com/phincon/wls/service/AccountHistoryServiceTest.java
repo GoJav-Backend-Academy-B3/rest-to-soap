@@ -17,8 +17,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
-import com.phincon.wls.model.dto.accounthistory.AccountHistoryRequest;
-import com.phincon.wls.model.dto.accounthistory.AccountHistoryResponse;
+import com.phincon.wls.model.dto.accounthistory.WsAccountHistoryRequest;
+import com.phincon.wls.model.dto.accounthistory.WsAccountHistoryResponse;
 import com.phincon.wls.model.entity.Mutasi;
 import com.phincon.wls.service.impl.AccountHistoryServiceImpl;
 
@@ -35,11 +35,11 @@ public class AccountHistoryServiceTest {
     @InjectMocks
     private final AccountHistoryService service = new AccountHistoryServiceImpl();
 
-    private AccountHistoryRequest sampleRequest = AccountHistoryRequest.builder()
+    private WsAccountHistoryRequest sampleRequest = WsAccountHistoryRequest.builder()
             .acctNbr("1002521739").acctTp("20").strDate("01092023")
             .endDate("18092023").strIndex("0").build();
 
-    private AccountHistoryResponse sampleResponse = null;
+    private WsAccountHistoryResponse sampleResponse = null;
 
     @BeforeAll
     public void setup() {
@@ -56,10 +56,10 @@ public class AccountHistoryServiceTest {
     @Test
     @DisplayName("Request account history with required data should return data")
     public void requestAccountHistoryData_data() throws Exception {
-        AccountHistoryRequest request = sampleRequest;
+        WsAccountHistoryRequest request = sampleRequest;
         final String urlTemplate = String.format("%s/ACCTHST/{ACCTNBR}/{ACCTTP}/{STRDATE}/{ENDDATE}/{STRINDEX}",
                 wsAccthstUrl);
-        Mockito.when(restTemplate.getForObject(urlTemplate, AccountHistoryResponse.class, request.getAcctNbr(),
+        Mockito.when(restTemplate.getForObject(urlTemplate, WsAccountHistoryResponse.class, request.getAcctNbr(),
                 request.getAcctTp(), request.getStrDate(), request.getEndDate(), request.getStrIndex()))
                 .thenReturn(sampleResponse);
 

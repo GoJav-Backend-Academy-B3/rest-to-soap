@@ -6,7 +6,7 @@ import java.io.InputStream;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.phincon.wls.model.dto.accounthistory.AccountHistoryResponse;
+import com.phincon.wls.model.dto.accounthistory.WsAccountHistoryResponse;
 
 /**
  * Provides Account History Service Test Data.
@@ -20,8 +20,8 @@ public class AccountHistoryServiceTestData {
         InputStream is = AccountHistoryServiceTestData.class.getClassLoader()
                 .getResourceAsStream("samplemutasiresponse.json");
         ObjectMapper mapper = new ObjectMapper();
-        sampleResponse = mapper.readValue(is, AccountHistoryResponse.class);
+        sampleResponse = mapper.readValue(is, WsAccountHistoryResponse.class);
     }
 
-    public static AccountHistoryResponse sampleResponse = null;
+    public static WsAccountHistoryResponse sampleResponse = null;
 }
