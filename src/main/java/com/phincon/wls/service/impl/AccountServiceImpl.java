@@ -1,16 +1,15 @@
 package com.phincon.wls.service.impl;
 
 
+import com.phincon.wls.model.dto.request.AccountRequest;
 import com.phincon.wls.model.dto.request.InqDataRequest;
 import com.phincon.wls.model.dto.request.SoapBodyRequest;
 import com.phincon.wls.model.dto.request.SoapEnvelopeRequest;
-import com.phincon.wls.model.dto.request.UserRequest;
-import com.phincon.wls.model.dto.response.User;
 import com.phincon.wls.model.dto.response.jaxb.SoapEnvelopeResponse;
-import com.phincon.wls.model.dto.response.jaxb.UserResponse;
-import com.phincon.wls.service.UserService;
+import com.phincon.wls.model.dto.response.jaxb.AccountResponse;
+import com.phincon.wls.service.AccountService;
 import com.phincon.wls.utils.CustomNamespacePrefixMapper;
-import com.phincon.wls.utils.UserBinding;
+import com.phincon.wls.utils.Bind;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +28,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class AccountServiceImpl implements AccountService {
 
     @Autowired
     @Qualifier("config")
@@ -39,7 +38,7 @@ public class UserServiceImpl implements UserService {
     private String soapApiUrl;
 
     @Override
-    public UserResponse getUser(String accNumber, String accType) throws JAXBException {
+    public AccountResponse getAccount(String accNumber, String accType) throws JAXBException {
         SoapEnvelopeRequest soapEnvelopeRequest = getSoapEnvelopeRequest(accNumber, accType);
 
         String soapRequestXML = getXmlString(soapEnvelopeRequest);
@@ -52,10 +51,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserNative(UserRequest request) throws Exception {
-        String resultBinding = UserBinding.jsonToSoap(request);
+    public com.phincon.wls.model.dto.response.ntv.AccountResponse getAccountNative(AccountRequest request) throws Exception {
+        String resultBinding = Bind.parseObject(request);
         String resultEntity = getUserResponseXml(resultBinding);
-        return UserBinding.parseXML(resultEntity);
+        return Bind.parseXML(resultEntity, com.phincon.wls.model.dto.response.ntv.AccountResponse.class);
     }
 
     private SoapEnvelopeResponse convertXmlToSoapEnvelopeResponse(String xmlResult) throws JAXBException {
@@ -106,7 +105,7 @@ public class UserServiceImpl implements UserService {
     private SoapEnvelopeRequest getSoapEnvelopeRequest(String accNumber, String accType) {
 
         // Create an instance of SoapEnvelope and set data
-        UserRequest user = new UserRequest();
+        AccountRequest user = new AccountRequest();
         SoapEnvelopeRequest soapEnvelopeRequest = new SoapEnvelopeRequest();
         SoapBodyRequest soapBodyRequest = new SoapBodyRequest();
         InqDataRequest inqDataRequest = new InqDataRequest();
