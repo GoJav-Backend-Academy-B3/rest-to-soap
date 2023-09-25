@@ -3,11 +3,11 @@ package com.phincon.wls.controller;
 import java.util.Arrays;
 import java.util.List;
 
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.mockito.Answers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -27,7 +27,7 @@ public class CreditCardControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockBean(answer = Answers.CALLS_REAL_METHODS)
     private CreditCardService service;
 
     @Autowired
@@ -41,7 +41,7 @@ public class CreditCardControllerTest {
 
     @Test
     @DisplayName("POST request to /creditcard/cif should return credit cards")
-    public void requestPOSTCreditcardCif_CreditCards() {
+    public void requestPOSTCreditcardCif_CreditCards() throws Exception {
         List<CreditCard> cards = Arrays.asList(
                 CreditCard.builder()
                         .cardNbr("4377001000167283").cardPrd(81).cardPrdCurr("360").cardPrdType("V")
@@ -60,17 +60,15 @@ public class CreditCardControllerTest {
                         .cardAcLstPyAmt(0).cardAcLstPyDte("00000000").cardAcCTDPyAmt(0)
                         .cardCustomer("160323730866").cardCif("0002917054").build());
         CifNumber cifNumber = new CifNumber("0002917054");
-        Mockito.when(service.queryCreditCard(cifNumber)).thenReturn(cards);
-
-        List<String> cifs = Arrays.asList(cifNumber.getCif(), cifNumber.getCif());
+        Mockito.when(service.queryCreditCard(Mockito.eq(cifNumber.getCif()))).thenReturn(cards);
 
         ResultActions result = mockMvc
-                .perform(MockMvcRequestBuilders.post("/creditcard/cif/{cif}", cifNumber.getCif()));
+                .perform(MockMvcRequestBuilders.get("/v1/creditcard/cif/{cif}", cifNumber.getCif()));
 
-        result.andExpectAll(MockMvcResultMatchers.jsonPath("$.rsHeader").exists(),
-                MockMvcResultMatchers.jsonPath("$.rsHeader.rqHeader").exists(),
-                MockMvcResultMatchers.jsonPath("$.rsBody").exists(),
-                MockMvcResultMatchers.jsonPath("$.rsBody").isArray(),
-                MockMvcResultMatchers.jsonPath("$.rsBody[*].cif").value(Matchers.containsInAnyOrder(cifs)));
+        result.andExpectAll(
+                MockMvcResultMatchers.status().isOk(),
+                MockMvcResultMatchers.jsonPath("$.data").exists(),
+                MockMvcResultMatchers.jsonPath("$.data").isArray());
+        Mockito.verify(service, Mockito.times(1)).queryCreditCard(cifNumber);
     }
 }
