@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ToString
 @XmlRootElement(name = "return")
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class UserResponse {
+public class AccountResponse {
     private String acctNbr;
     private String acctType;
     private String address1;

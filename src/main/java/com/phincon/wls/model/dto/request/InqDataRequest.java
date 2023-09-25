@@ -12,14 +12,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ToString
 public class InqDataRequest {
 
-    private UserRequest userRequest;
+    private AccountResponse userRequest;
 
     @XmlElement(name = "arg0")
-    public UserRequest getUserRequest() {
+    public AccountResponse getUserRequest() {
         return userRequest;
     }
 
-    public void setUserRequest(UserRequest userRequest) {
+    public void setUserRequest(AccountResponse userRequest) {
         this.userRequest = userRequest;
     }
 }

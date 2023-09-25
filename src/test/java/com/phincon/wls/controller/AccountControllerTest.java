@@ -2,10 +2,8 @@ package com.phincon.wls.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.phincon.wls.model.dto.request.UserRequest;
-import com.phincon.wls.model.dto.response.User;
-import com.phincon.wls.model.dto.response.jaxb.UserResponse;
-import com.phincon.wls.service.UserService;
+import com.phincon.wls.model.dto.response.jaxb.AccountResponse;
+import com.phincon.wls.service.AccountService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -22,51 +20,51 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(UserController.class)
+@WebMvcTest(AccountController.class)
 //@ContextConfiguration(classes = {UserController.class})
-public class UserControllerTest {
+public class AccountControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserService userService;
+    private AccountService accountService;
 
     @Autowired
-    private UserController userController;
+    private AccountController userController;
 
     @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
 
-        UserResponse userResponse = new UserResponse();
-        userResponse.setAcctNbr("12345");
-        userResponse.setAcctType("A");
+        AccountResponse accountResponse = new AccountResponse();
+        accountResponse.setAcctNbr("12345");
+        accountResponse.setAcctType("A");
 
-        User user = new User();
+        com.phincon.wls.model.dto.response.ntv.AccountResponse user = new com.phincon.wls.model.dto.response.ntv.AccountResponse();
         user.setAcctNbr("12345");
         user.setAcctType("A");
 
         // Mock the userService's getUser method to return the sample response
-        lenient().when(userService.getUser("12345", "A")).thenReturn(userResponse);
-        lenient().when(userService.getUserNative(any(UserRequest.class))).thenReturn(user);
+        lenient().when(accountService.getAccount("12345", "A")).thenReturn(accountResponse);
+        lenient().when(accountService.getAccountNative(any(com.phincon.wls.model.dto.request.AccountResponse.class))).thenReturn(user);
     }
 
     @Test
-    public void whenUserControllerInjected_thenNotNull() {
+    public void whenAccountControllerInjected_thenNotNull() {
         assertThat(userController).isNotNull();
     }
 
     @Test
-    public void testGetUserDetail() throws Exception {
+    public void testGetAccountDetail() throws Exception {
         // Create a sample user request
-        UserRequest userRequest = new UserRequest();
+        com.phincon.wls.model.dto.request.AccountResponse userRequest = new com.phincon.wls.model.dto.request.AccountResponse();
         userRequest.setAcctNbr("12345");
         userRequest.setAcctType("A");
 
         // Perform the POST request to /v1/user with the sample userRequest
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/v1/user")
+                        .post("/v1/account")
                         .content(new ObjectMapper().writeValueAsString(userRequest))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -77,18 +75,18 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.data.acct_type").value("A"));
 
         // Verify that the userService's getUser method was called with the correct arguments
-        verify(userService, times(1)).getUser("12345", "A");
+        verify(accountService, times(1)).getAccount("12345", "A");
     }
 
     @Test
-    public void testGetUserDetailNative() throws Exception {
-        UserRequest userRequest = new UserRequest();
+    public void testGetAccountDetailNative() throws Exception {
+        com.phincon.wls.model.dto.request.AccountResponse userRequest = new com.phincon.wls.model.dto.request.AccountResponse();
         userRequest.setAcctNbr("12345");
         userRequest.setAcctType("A");
 
         // Perform the POST request to /v1/user with the sample userRequest
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/v1/user-native")
+                        .post("/v1/account-native")
                         .content(new ObjectMapper().writeValueAsString(userRequest))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -99,6 +97,6 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.data.acct_type").value("A"));
 
         // Verify that the userService's getUser method was called with the correct arguments
-        verify(userService, times(1)).getUserNative(any(UserRequest.class));
+        verify(accountService, times(1)).getAccountNative(any(com.phincon.wls.model.dto.request.AccountResponse.class));
     }
 }
