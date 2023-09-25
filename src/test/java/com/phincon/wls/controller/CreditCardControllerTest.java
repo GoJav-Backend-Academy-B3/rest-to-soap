@@ -50,7 +50,7 @@ public class CreditCardControllerTest {
                         .cardAcPyDueAmt(16654889.13).cardAcCurBal(33856264.81).cardAcAvailCr(16143735.19)
                         .cardAcPointBal(238).cardEmbName("AN0341349").cardAcLstStmDt("20230913")
                         .cardAcLstPyAmt(0).cardAcLstPyDte("00000000").cardAcCTDPyAmt(0)
-                        .cardCustomer("160323730866").cardCif("0002917054").build(),
+                        .cardCustomer("160323730866").cardCIF("0002917054").build(),
                 CreditCard.builder()
                         .cardNbr("4377001001587059").cardPrd(81).cardPrdCurr("360").cardPrdType("V")
                         .cardAplType("P").cardSts("4").cardBlk("E0").cardInactiveDt("00000000")
@@ -58,7 +58,7 @@ public class CreditCardControllerTest {
                         .cardAcPyDueAmt(16654889.13).cardAcCurBal(33856264.81).cardAcAvailCr(16143735.19)
                         .cardAcPointBal(238).cardEmbName("AN0341349").cardAcLstStmDt("20230913")
                         .cardAcLstPyAmt(0).cardAcLstPyDte("00000000").cardAcCTDPyAmt(0)
-                        .cardCustomer("160323730866").cardCif("0002917054").build());
+                        .cardCustomer("160323730866").cardCIF("0002917054").build());
         CifNumber cifNumber = new CifNumber("0002917054");
         Mockito.when(service.queryCreditCard(Mockito.eq(cifNumber.getCif()))).thenReturn(cards);
 
