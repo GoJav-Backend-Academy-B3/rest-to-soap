@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.phincon.wls.model.dto.creditcard.WsCreditCardRequest;
@@ -17,6 +18,7 @@ import com.phincon.wls.model.dto.creditcard.WsCreditCardResponse;
 import com.phincon.wls.model.entity.CreditCard;
 import com.phincon.wls.service.CreditCardService;
 
+@Service
 public class CreditCardServiceImpl implements CreditCardService {
 
     @Autowired
