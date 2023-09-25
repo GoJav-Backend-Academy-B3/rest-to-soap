@@ -1,7 +1,6 @@
 package com.phincon.wls.model.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.phincon.wls.namingstrategies.ScreamingCaseStrategy;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,13 +11,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@JsonNaming(ScreamingCaseStrategy.class)
 public class Account {
+    @JsonProperty("ACCOUNTNBR")
     String accountNbr;
+    @JsonProperty("PRODUCTNAME")
     String productName;
+    @JsonProperty("PRODUCTTP")
     String productTp;
+    @JsonProperty("CURR")
     String curr;
+    @JsonProperty("PRIMARY")
     String primary;
+    @JsonProperty("ACCTSTAT")
     String acctStat;
+    @JsonProperty("ATMCARD")
     String atmCard;
 }
