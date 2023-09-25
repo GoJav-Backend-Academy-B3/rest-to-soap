@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountHistoryRequest {
+public class WsAccountHistoryRequest {
     private String acctNbr;
     private String acctTp;
     private String strDate;

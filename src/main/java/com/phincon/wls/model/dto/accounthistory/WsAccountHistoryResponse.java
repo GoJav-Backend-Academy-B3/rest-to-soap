@@ -15,7 +15,7 @@ import lombok.Singular;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountHistoryResponse {
+public class WsAccountHistoryResponse {
 
     @JsonProperty("RESP")
     private String resp;
