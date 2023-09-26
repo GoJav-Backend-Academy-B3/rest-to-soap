@@ -38,7 +38,7 @@ public class AccountServiceImpl implements AccountService {
     private String soapApiUrl;
 
     @Override
-    public AccountResponse getAccount(String accNumber, String accType) throws JAXBException {
+    public AccountResponse getAccount(String accNumber, String accType) throws Exception {
         SoapEnvelopeRequest soapEnvelopeRequest = getSoapEnvelopeRequest(accNumber, accType);
 
         String soapRequestXML = getXmlString(soapEnvelopeRequest);
@@ -47,7 +47,13 @@ public class AccountServiceImpl implements AccountService {
 
         SoapEnvelopeResponse soapEnvelopeResponse = convertXmlToSoapEnvelopeResponse(xmlResult);
 
-        return soapEnvelopeResponse.getSoapBody().getInqData().getResult();
+        AccountResponse result = soapEnvelopeResponse.getSoapBody().getInqData().getResult();
+
+        if (result == null) {
+            throw new Exception("not found");
+        }
+
+        return result;
     }
 
     @Override
@@ -68,7 +74,7 @@ public class AccountServiceImpl implements AccountService {
 
     private String getUserResponseXml(String soapRequestXML) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_XML);
+        headers.setContentType(MediaType.TEXT_XML);
 
         HttpEntity<String> requestEntity = new HttpEntity<>(soapRequestXML, headers);
 

@@ -36,8 +36,8 @@ public class Bind {
         envelope.appendChild(body);
 
         // Create your specific XML structure based on the JSON data
-        Element inqData = document.createElement("inqdata");
-        inqData.setAttribute("xmlns", "http://inqdata.wsbeans.iseries/");
+        Element inqData = document.createElement("ns2:inqdata");
+        inqData.setAttribute("xmlns:ns2", "http://inqdata.wsbeans.iseries/");
         body.appendChild(inqData);
 
         Element arg0 = document.createElement("arg0");
