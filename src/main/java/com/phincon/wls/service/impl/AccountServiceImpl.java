@@ -10,6 +10,7 @@ import com.phincon.wls.model.dto.response.jaxb.AccountResponse;
 import com.phincon.wls.service.AccountService;
 import com.phincon.wls.utils.CustomNamespacePrefixMapper;
 import com.phincon.wls.utils.Bind;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +29,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 @Service
+@Slf4j
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
@@ -43,7 +45,11 @@ public class AccountServiceImpl implements AccountService {
 
         String soapRequestXML = getXmlString(soapEnvelopeRequest);
 
+        log.info(soapRequestXML);
+
         String xmlResult = getUserResponseXml(soapRequestXML);
+
+        log.info(xmlResult);
 
         SoapEnvelopeResponse soapEnvelopeResponse = convertXmlToSoapEnvelopeResponse(xmlResult);
 
@@ -59,7 +65,9 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public com.phincon.wls.model.dto.response.ntv.AccountResponse getAccountNative(AccountRequest request) throws Exception {
         String resultBinding = Bind.parseObject(request);
+        log.info(resultBinding);
         String resultEntity = getUserResponseXml(resultBinding);
+        log.info(resultEntity);
         return Bind.parseXML(resultEntity, com.phincon.wls.model.dto.response.ntv.AccountResponse.class);
     }
 
