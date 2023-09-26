@@ -1,0 +1,456 @@
+{
+    "COUNT": "50",
+    "RESP": "00",
+    "DATARAW": [
+      {
+        "ACCOUNTNBR": "1000502535          ",
+        "PRODUCTNAME": "TABUNGAN PANIN P/NB                     ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "4",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000503438          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "1",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000503676          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "1",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000503681          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "1",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000503697          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "1",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000504682          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000504698          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000505424          ",
+        "PRODUCTNAME": "PAN DOLLAR P/NB SGD                     ",
+        "PRODUCTTP": "          20",
+        "CURR": "SGD",
+        "PRIMARY": " ",
+        "ACCTSTAT": "1",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000505445          ",
+        "PRODUCTNAME": "PAN DOLLAR P/NB SGD                     ",
+        "PRODUCTTP": "          20",
+        "CURR": "SGD",
+        "PRIMARY": " ",
+        "ACCTSTAT": "5",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000507524          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000507995          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508003          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508019          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508066          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508071          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508087          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508092          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508101          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508117          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508122          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508138          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508143          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508159          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508164          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508185          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508215          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508257          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508262          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508278          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508283          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508313          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508355          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508381          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508397          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508406          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508411          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508427          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000508623          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000510733          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000510749          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000510754          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000510775          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000510847          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000510971          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000511254          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000511585          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1000511967          ",
+        "PRODUCTNAME": "TABUNGAN MYGOALS P/NB                   ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "3",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1002023201          ",
+        "PRODUCTNAME": "TABUNGAN PANIN P/NB                     ",
+        "PRODUCTTP": "          20",
+        "CURR": "IDR",
+        "PRIMARY": " ",
+        "ACCTSTAT": "1",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1002048462          ",
+        "PRODUCTNAME": "PANDOLLAR P/NB AUD                      ",
+        "PRODUCTTP": "          20",
+        "CURR": "AUD",
+        "PRIMARY": " ",
+        "ACCTSTAT": "5",
+        "ATMCARD": "                "
+      },
+      {
+        "ACCOUNTNBR": "1002048499          ",
+        "PRODUCTNAME": "PAN DOLLAR P/NB JPY                     ",
+        "PRODUCTTP": "          20",
+        "CURR": "JPY",
+        "PRIMARY": " ",
+        "ACCTSTAT": "5",
+        "ATMCARD": "                "
+      }
+    ]
+  }
