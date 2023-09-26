@@ -1,5 +1,6 @@
 package com.phincon.wls.model.entity;
 
+
 import lombok.Data;
 
 @Data
