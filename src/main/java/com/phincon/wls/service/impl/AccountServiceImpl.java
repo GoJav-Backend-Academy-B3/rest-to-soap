@@ -1,15 +1,16 @@
 package com.phincon.wls.service.impl;
 
 
+import com.phincon.wls.exception.custom.NotFoundException;
 import com.phincon.wls.model.dto.request.AccountRequest;
 import com.phincon.wls.model.dto.request.InqDataRequest;
 import com.phincon.wls.model.dto.request.SoapBodyRequest;
 import com.phincon.wls.model.dto.request.SoapEnvelopeRequest;
-import com.phincon.wls.model.dto.response.jaxb.SoapEnvelopeResponse;
 import com.phincon.wls.model.dto.response.jaxb.AccountResponse;
+import com.phincon.wls.model.dto.response.jaxb.SoapEnvelopeResponse;
 import com.phincon.wls.service.AccountService;
-import com.phincon.wls.utils.CustomNamespacePrefixMapper;
 import com.phincon.wls.utils.Bind;
+import com.phincon.wls.utils.CustomNamespacePrefixMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -68,7 +69,14 @@ public class AccountServiceImpl implements AccountService {
         log.info(resultBinding);
         String resultEntity = getUserResponseXml(resultBinding);
         log.info(resultEntity);
-        return Bind.parseXML(resultEntity, com.phincon.wls.model.dto.response.ntv.AccountResponse.class);
+        com.phincon.wls.model.dto.response.ntv.AccountResponse result = Bind.
+                parseXML(resultEntity, com.phincon.wls.model.dto.response.ntv.AccountResponse.class);
+
+        if (result.getAcctNbr() == null || result.getAcctType() == null) {
+            throw new NotFoundException("Account not found");
+        }
+
+        return result;
     }
 
     private SoapEnvelopeResponse convertXmlToSoapEnvelopeResponse(String xmlResult) throws JAXBException {
