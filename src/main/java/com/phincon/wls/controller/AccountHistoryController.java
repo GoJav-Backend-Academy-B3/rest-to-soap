@@ -15,7 +15,7 @@ import com.phincon.wls.model.entity.Mutasi;
 import com.phincon.wls.service.AccountHistoryService;
 
 @RestController
-@RequestMapping("v1/accthst")
+@RequestMapping("/v1/accthst")
 public class AccountHistoryController {
 
     @Autowired
