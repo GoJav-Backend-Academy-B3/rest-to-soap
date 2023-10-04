@@ -11,4 +11,6 @@ public interface AccountService {
     com.phincon.wls.model.dto.response.ntv.AccountResponse
     getAccountNative(AccountRequest request)
             throws Exception;
+    
+    AccountResponse getPostAccount(String accNumber, String accType) throws Exception;
 }

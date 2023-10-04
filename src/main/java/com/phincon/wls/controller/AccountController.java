@@ -31,4 +31,13 @@ public class AccountController {
             throws Exception {
         return DataResponse.ok(accountService.getAccountNative(request));
     }
+    
+    @PostMapping("/account-post")
+    public ResponseEntity<DataResponse<AccountResponse>> getPostAccountDetail(@RequestBody AccountRequest userRequest) throws Exception {
+        AccountResponse accountResponse = accountService.getPostAccount(userRequest.getAcctNbr(), userRequest.getAcctType());
+
+        return DataResponse.ok(accountResponse);
+    }
+    
+    
 }

@@ -14,11 +14,15 @@ import com.phincon.wls.utils.CustomNamespacePrefixMapper;
 import com.phincon.wls.utils.LogUtils;
 
 import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -35,6 +39,8 @@ import java.io.StringWriter;
 //@Slf4j
 public class AccountServiceImpl implements AccountService {
 
+	private static final Logger log = LoggerFactory.getLogger(AccountServiceImpl.class);
+	
     @Autowired
     @Qualifier("config")
     private RestTemplate restTemplate;
@@ -48,13 +54,16 @@ public class AccountServiceImpl implements AccountService {
     public AccountResponse getAccount(String accNumber, String accType) throws Exception {
         SoapEnvelopeRequest soapEnvelopeRequest = getSoapEnvelopeRequest(accNumber, accType);
 
-        String soapRequestXML = getXmlString(soapEnvelopeRequest);
+        //String soapRequestXML = getXmlString(soapEnvelopeRequest);
+        String soapRequestXML = xmlBody(accNumber, accType);
 
         logs.printLog(soapRequestXML);
+        log.debug(soapRequestXML);
 
         String xmlResult = getUserResponseXml(soapRequestXML);
 
         logs.printLog(xmlResult);
+        log.debug(xmlResult);
 
         SoapEnvelopeResponse soapEnvelopeResponse = convertXmlToSoapEnvelopeResponse(xmlResult);
 
@@ -70,9 +79,9 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public com.phincon.wls.model.dto.response.ntv.AccountResponse getAccountNative(AccountRequest request) throws Exception {
         String resultBinding = Bind.parseObject(request);
-//        log.info(resultBinding);
+        logs.printLog(resultBinding);
         String resultEntity = getUserResponseXml(resultBinding);
-//        log.info(resultEntity);
+        logs.printLog(resultEntity);
         com.phincon.wls.model.dto.response.ntv.AccountResponse result = Bind.
                 parseXML(resultEntity, com.phincon.wls.model.dto.response.ntv.AccountResponse.class);
 
@@ -94,7 +103,7 @@ public class AccountServiceImpl implements AccountService {
 
     private String getUserResponseXml(String soapRequestXML) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.TEXT_XML);
+        headers.setContentType(MediaType.APPLICATION_XML);
 
         HttpEntity<String> requestEntity = new HttpEntity<>(soapRequestXML, headers);
 
@@ -143,5 +152,66 @@ public class AccountServiceImpl implements AccountService {
         soapBodyRequest.setInqDataRequest(inqDataRequest);
         soapEnvelopeRequest.setSoapBodyRequest(soapBodyRequest);
         return soapEnvelopeRequest;
+    }
+    
+    
+    private String xmlBody(String accNo, String accType) {
+    	String xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:inq=\"http://inqdata.wsbeans.iseries/\">\r\n" + 
+    			"   <soapenv:Header/>\r\n" + 
+    			"   <soapenv:Body>\r\n" + 
+    			"      <inq:inqdata>\r\n" + 
+    			"         <arg0>\r\n" + 
+    			"            <ACCTNBR>{acc_no}</ACCTNBR>\r\n" + 
+    			"            <ACCTTYPE>{acc_type}</ACCTTYPE>\r\n" + 
+    			"         </arg0>\r\n" + 
+    			"      </inq:inqdata>\r\n" + 
+    			"   </soapenv:Body>\r\n" + 
+    			"</soapenv:Envelope>";
+    	
+    	xml = xml.replace("{acc_no}", accNo);
+    	xml = xml.replace("{acc_type}", accType);
+    	
+    	return xml;
+    }
+    
+    @Override
+    public AccountResponse getPostAccount(String accNumber, String accType) throws Exception {
+        //SoapEnvelopeRequest soapEnvelopeRequest = getSoapEnvelopeRequest(accNumber, accType);
+
+        //String soapRequestXML = getXmlString(soapEnvelopeRequest);
+        String soapRequestXML = xmlBody(accNumber, accType);
+
+        logs.printLog(soapRequestXML);
+
+        String xmlResult = getPostUserResponseXml(soapRequestXML);
+
+        logs.printLog(xmlResult);
+
+        SoapEnvelopeResponse soapEnvelopeResponse = convertXmlToSoapEnvelopeResponse(xmlResult);
+
+        AccountResponse result = soapEnvelopeResponse.getSoapBody().getInqData().getResult();
+
+//        if (result == null) {
+//            throw new Exception("not found");
+//        }
+
+        return result;
+    }
+    
+    
+    private String getPostUserResponseXml(String soapRequestXML) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.TEXT_XML);
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(soapRequestXML, headers);
+
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
+                soapApiUrl, // Replace with your SOAP service URL
+                HttpMethod.POST,
+                requestEntity,
+                String.class
+        );
+
+        return responseEntity.getBody();
     }
 }

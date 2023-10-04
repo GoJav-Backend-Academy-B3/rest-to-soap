@@ -28,4 +28,12 @@ public class CreditCardController {
 
         return DataResponse.ok(result);
     } 
+    
+    @GetMapping("/card/{cardNo}")
+    public ResponseEntity<DataResponse<List<CreditCard>>> queryCreditCardByCardNumber(@PathVariable String cardNo) {
+
+        List<CreditCard> result = service.queryCreditCardByCardNumber(cardNo);
+
+        return DataResponse.ok(result);
+    } 
 }

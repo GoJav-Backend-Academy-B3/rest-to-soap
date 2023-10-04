@@ -39,4 +39,6 @@ public interface CreditCardService {
      * @return List of credit card data 
      */
     public List<CreditCard> queryCreditCard(String number);
+    
+    public List<CreditCard> queryCreditCardByCardNumber(String number);
 }
