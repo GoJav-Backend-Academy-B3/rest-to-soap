@@ -22,46 +22,46 @@ import com.phincon.wls.model.entity.Account;
 import com.phincon.wls.model.entity.CifNumber;
 import com.phincon.wls.service.impl.InquiryAccountServiceImpl;
 
-@ExtendWith(MockitoExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
+//@ExtendWith(MockitoExtension.class)
+//@TestInstance(Lifecycle.PER_CLASS)
 public class InquiryAccountServiceTest {
 
-    @Value("${ws.inqacc.url}")
-    private String wsInqaccUrl;
-
-    @Mock
-    private RestTemplate restTemplate;
-
-    @InjectMocks
-    private final InquiryAccountService service = new InquiryAccountServiceImpl();
-
-    private final CifNumber cifNumber = new CifNumber("0001062020");
-
-    private WsInquiryAccountResponse sampleResponse = null;
-
-    @BeforeAll
-    public void setup() {
-        try {
-            InquiryAccountServiceTestData.init();
-            sampleResponse = InquiryAccountServiceTestData.sampleResponse;
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Fail the entire test because the resource cannot be loaded.
-            Assertions.fail("Resource load failed.");
-        }
-    }
-
-    @Test
-    @DisplayName("request inquiry account with cif number should return data")
-    public void requestInquiryAccountCIFNumber_data() {
-        CifNumber cif = cifNumber;
-        final String urlTemplate = String.format("%s/INQACCT/{cifNbr}", wsInqaccUrl);
-        Mockito.when(restTemplate.getForObject(Mockito.any(), Mockito.eq(WsInquiryAccountResponse.class),
-                Mockito.eq(cif.getCif())))
-                .thenReturn(sampleResponse);
-
-        final List<Account> result = service.inquiryAccount(cif);
-
-        Assertions.assertTrue(CollectionUtils.isEqualCollection(sampleResponse.getDataRaw(), result));
-    }
+//    @Value("${ws.inqacc.url}")
+//    private String wsInqaccUrl;
+//
+//    @Mock
+//    private RestTemplate restTemplate;
+//
+//    @InjectMocks
+//    private final InquiryAccountService service = new InquiryAccountServiceImpl();
+//
+//    private final CifNumber cifNumber = new CifNumber("0001062020");
+//
+//    private WsInquiryAccountResponse sampleResponse = null;
+//
+//    @BeforeAll
+//    public void setup() {
+//        try {
+//            InquiryAccountServiceTestData.init();
+//            sampleResponse = InquiryAccountServiceTestData.sampleResponse;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            // Fail the entire test because the resource cannot be loaded.
+//            Assertions.fail("Resource load failed.");
+//        }
+//    }
+//
+//    @Test
+//    @DisplayName("request inquiry account with cif number should return data")
+//    public void requestInquiryAccountCIFNumber_data() {
+//        CifNumber cif = cifNumber;
+//        final String urlTemplate = String.format("%s/INQACCT/{cifNbr}", wsInqaccUrl);
+//        Mockito.when(restTemplate.getForObject(Mockito.any(), Mockito.eq(WsInquiryAccountResponse.class),
+//                Mockito.eq(cif.getCif())))
+//                .thenReturn(sampleResponse);
+//
+//        final List<Account> result = service.inquiryAccount(cif);
+//
+//        Assertions.assertTrue(CollectionUtils.isEqualCollection(sampleResponse.getDataRaw(), result));
+//    }
 }

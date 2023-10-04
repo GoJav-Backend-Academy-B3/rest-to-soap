@@ -12,6 +12,7 @@ import com.phincon.wls.model.dto.inquiryaccount.WsInquiryAccountResponse;
 import com.phincon.wls.model.entity.Account;
 import com.phincon.wls.model.entity.CifNumber;
 import com.phincon.wls.service.InquiryAccountService;
+import com.phincon.wls.utils.LogUtils;
 
 @Service
 public class InquiryAccountServiceImpl implements InquiryAccountService {
@@ -23,12 +24,15 @@ public class InquiryAccountServiceImpl implements InquiryAccountService {
     @Value("${ws.inqacc.url}")
     private String wsInqaccUrl;
 
+    LogUtils logs = new LogUtils();
+    
     @Override
     public List<Account> inquiryAccount(CifNumber cif) {
         final String templateUrl = String.format("%s/INQACCT/{cifnbr}", wsInqaccUrl);
+        logs.printLog(templateUrl);
         WsInquiryAccountResponse response = restTemplate.getForObject(templateUrl,
                 WsInquiryAccountResponse.class, cif.getCif());
-
+        logs.printLog(response.toString());
         return response.getDataRaw();
     }
 

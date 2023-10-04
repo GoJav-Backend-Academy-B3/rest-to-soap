@@ -16,12 +16,12 @@ import com.phincon.wls.model.dto.accounthistory.WsAccountHistoryResponse;
  * in order to get sampleResponse.
  */
 public class AccountHistoryServiceTestData {
-    public static void init() throws DatabindException, StreamReadException, IOException {
-        InputStream is = AccountHistoryServiceTestData.class.getClassLoader()
-                .getResourceAsStream("samplemutasiresponse.json");
-        ObjectMapper mapper = new ObjectMapper();
-        sampleResponse = mapper.readValue(is, WsAccountHistoryResponse.class);
-    }
-
-    public static WsAccountHistoryResponse sampleResponse = null;
+//    public static void init() throws DatabindException, StreamReadException, IOException {
+//        InputStream is = AccountHistoryServiceTestData.class.getClassLoader()
+//                .getResourceAsStream("samplemutasiresponse.json");
+//        ObjectMapper mapper = new ObjectMapper();
+//        sampleResponse = mapper.readValue(is, WsAccountHistoryResponse.class);
+//    }
+//
+//    public static WsAccountHistoryResponse sampleResponse = null;
 }

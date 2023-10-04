@@ -17,6 +17,7 @@ import com.phincon.wls.model.dto.creditcard.WsCreditCardRequestHeader;
 import com.phincon.wls.model.dto.creditcard.WsCreditCardResponse;
 import com.phincon.wls.model.entity.CreditCard;
 import com.phincon.wls.service.CreditCardService;
+import com.phincon.wls.utils.LogUtils;
 
 @Service
 public class CreditCardServiceImpl implements CreditCardService {
@@ -28,6 +29,8 @@ public class CreditCardServiceImpl implements CreditCardService {
     @Value("${ws.creditcard.url}")
     private String wsCreditCardUrl;
 
+    LogUtils logs = new LogUtils();
+    
     @Override
     public List<CreditCard> queryCreditCard(String number)  {
         
@@ -43,11 +46,16 @@ public class CreditCardServiceImpl implements CreditCardService {
                 .build();
 
         final HttpEntity<WsCreditCardRequest> request = new HttpEntity<>(body);
+        
+        logs.printLog(request.toString());
+        
         ResponseEntity<WsCreditCardResponse> responseEntity = restTemplate.exchange(wsCreditCardUrl, HttpMethod.POST, request,
                 WsCreditCardResponse.class);
 
         WsCreditCardResponse response = responseEntity.getBody();
 
+        logs.printLog(response.toString());
+        
         return response.getRsBody();
     }
 

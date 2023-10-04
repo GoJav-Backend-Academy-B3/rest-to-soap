@@ -11,6 +11,8 @@ import com.phincon.wls.model.dto.response.jaxb.SoapEnvelopeResponse;
 import com.phincon.wls.service.AccountService;
 import com.phincon.wls.utils.Bind;
 import com.phincon.wls.utils.CustomNamespacePrefixMapper;
+import com.phincon.wls.utils.LogUtils;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,7 +32,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 @Service
-@Slf4j
+//@Slf4j
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
@@ -40,25 +42,27 @@ public class AccountServiceImpl implements AccountService {
     @Value("${soap.api.url}")
     private String soapApiUrl;
 
+    LogUtils logs = new LogUtils();
+    
     @Override
     public AccountResponse getAccount(String accNumber, String accType) throws Exception {
         SoapEnvelopeRequest soapEnvelopeRequest = getSoapEnvelopeRequest(accNumber, accType);
 
         String soapRequestXML = getXmlString(soapEnvelopeRequest);
 
-        log.info(soapRequestXML);
+        logs.printLog(soapRequestXML);
 
         String xmlResult = getUserResponseXml(soapRequestXML);
 
-        log.info(xmlResult);
+        logs.printLog(xmlResult);
 
         SoapEnvelopeResponse soapEnvelopeResponse = convertXmlToSoapEnvelopeResponse(xmlResult);
 
         AccountResponse result = soapEnvelopeResponse.getSoapBody().getInqData().getResult();
 
-        if (result == null) {
-            throw new Exception("not found");
-        }
+//        if (result == null) {
+//            throw new Exception("not found");
+//        }
 
         return result;
     }
@@ -66,9 +70,9 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public com.phincon.wls.model.dto.response.ntv.AccountResponse getAccountNative(AccountRequest request) throws Exception {
         String resultBinding = Bind.parseObject(request);
-        log.info(resultBinding);
+//        log.info(resultBinding);
         String resultEntity = getUserResponseXml(resultBinding);
-        log.info(resultEntity);
+//        log.info(resultEntity);
         com.phincon.wls.model.dto.response.ntv.AccountResponse result = Bind.
                 parseXML(resultEntity, com.phincon.wls.model.dto.response.ntv.AccountResponse.class);
 

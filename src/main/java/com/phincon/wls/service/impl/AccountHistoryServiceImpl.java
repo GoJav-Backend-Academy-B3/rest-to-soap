@@ -18,6 +18,7 @@ import com.phincon.wls.model.dto.accounthistory.WsAccountHistoryRequest;
 import com.phincon.wls.model.dto.accounthistory.WsAccountHistoryResponse;
 import com.phincon.wls.model.entity.Mutasi;
 import com.phincon.wls.service.AccountHistoryService;
+import com.phincon.wls.utils.LogUtils;
 
 @Service
 public class AccountHistoryServiceImpl implements AccountHistoryService {
@@ -29,11 +30,14 @@ public class AccountHistoryServiceImpl implements AccountHistoryService {
     @Value("${ws.accthst.url}")
     private String wsAccthstUrl;
 
+    LogUtils logs = new LogUtils();
+    
     @Override
     public List<Mutasi> queryAccountHistory(WsAccountHistoryRequest request) {
         final String urlTemplate = String.format("%s/ACCTHST/{ACCTNBR}/{ACCTTP}/{STRDATE}/{ENDDATE}/{STRINDEX}",
                 wsAccthstUrl);
         ResponseEntity<WsAccountHistoryResponse> responseEntity = null;
+        logs.printLog(urlTemplate);
         try {
             responseEntity = restTemplate.getForEntity(urlTemplate,
                     WsAccountHistoryResponse.class, request.getAcctNbr(), request.getAcctTp(),
@@ -54,7 +58,7 @@ public class AccountHistoryServiceImpl implements AccountHistoryService {
         }
 
         List<Mutasi> mutasi = responseEntity.getBody().getMutasi();
-
+        logs.printLog(mutasi.toString());
         return mutasi;
     }
 }

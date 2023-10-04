@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.phincon</groupId>
-	<artifactId>wls</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>panin</artifactId>
+	<version>0</version>
 	<packaging>war</packaging>
 	<name>wls</name>
 	<description>Transform rest to soap</description>
