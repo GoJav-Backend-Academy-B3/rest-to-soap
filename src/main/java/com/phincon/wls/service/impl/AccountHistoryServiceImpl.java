@@ -37,7 +37,7 @@ public class AccountHistoryServiceImpl implements AccountHistoryService {
         final String urlTemplate = String.format("%s/ACCTHST/{ACCTNBR}/{ACCTTP}/{STRDATE}/{ENDDATE}/{STRINDEX}",
                 wsAccthstUrl);
         ResponseEntity<WsAccountHistoryResponse> responseEntity = null;
-        logs.printLog(urlTemplate);
+        logs.printLog("Account History API :: "+wsAccthstUrl);
         try {
             responseEntity = restTemplate.getForEntity(urlTemplate,
                     WsAccountHistoryResponse.class, request.getAcctNbr(), request.getAcctTp(),

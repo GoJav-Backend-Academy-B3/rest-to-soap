@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.phincon.wls.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +25,6 @@ import com.phincon.wls.model.entity.CreditCard;
 import com.phincon.wls.model.entity.Mutasi;
 import com.phincon.wls.model.entity.ResponseData1;
 import com.phincon.wls.model.entity.ResponseData2;
-import com.phincon.wls.service.AccountHistoryService;
-import com.phincon.wls.service.AccountService;
-import com.phincon.wls.service.CreditCardService;
-import com.phincon.wls.service.InquiryAccountService;
 
 
 @RestController
@@ -46,76 +43,22 @@ public class UseCaseController {
     @Autowired
     private InquiryAccountService inqService;
     
+    @Autowired
+    private UseCaseService useCaseService;
+    
     SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
     
     @PostMapping("/usecase1")
     public ResponseEntity<DataResponse<ResponseData1>> getAccountDetail(@RequestBody AccountRequest userRequest) throws Exception {
-        AccountResponse accountResponse = accountService.getAccount(userRequest.getAcctNbr(), userRequest.getAcctType());
-
-        String cif = accountResponse.getCif();
-        System.out.println("======> cif "+ cif);
-        
-        Calendar cal = Calendar.getInstance();        
-        cal.add(Calendar.DATE, -1);
-        String endDate = sdf.format(cal.getTime());        
-        cal.add(Calendar.MONTH, -1);
-        cal.set(Calendar.DATE, 1);
-        String startDate = sdf.format(cal.getTime());
-        String strindex = "0";        
-        
-        WsAccountHistoryRequest accountHistoryRequest = new WsAccountHistoryRequest(userRequest.getAcctNbr(),
-        		userRequest.getAcctType(), startDate, endDate, strindex);
-        
-        List<Mutasi> mutasis = histService.queryAccountHistory(accountHistoryRequest);
-        
-        //ResponseEntity<DataResponse<List<CreditCard>>> queryCreditCardByCif(@PathVariable String cif) {
-
-        List<CreditCard> result = ccService.queryCreditCard(new CifNumber(cif));
-
-        ResponseData1 rd = new ResponseData1();       
-        rd.setAccountResponse(accountResponse);
-        rd.setAccountHistory(mutasis);
-    	rd.setCreditCard(result);
-    	
+        ResponseData1 rd = useCaseService.useCaseData(userRequest.getAcctNbr(), userRequest.getAcctType());
         
         return DataResponse.ok(rd);
     }
     
     
     @GetMapping("/usecase2/{cifnbr}")
-    public ResponseEntity<DataResponse<ResponseData2>> getInquiryAccount(@PathVariable String cifnbr) {
-
-        List<Account> accounts = inqService.inquiryAccount(new CifNumber(cifnbr));
-        
-        List<CreditCard> result = ccService.queryCreditCardByCardNumber(cifnbr);
-        
-        Calendar cal = Calendar.getInstance();        
-    	cal.add(Calendar.DATE, -1);
-    	String endDate = sdf.format(cal.getTime());        
-    	cal.add(Calendar.MONTH, -1);
-    	cal.set(Calendar.DATE, 1);
-    	String startDate = sdf.format(cal.getTime());
-    	String strindex = "0";  
-    	List<Mutasi> listMutasi = new ArrayList<Mutasi>();
-    	List<List<Mutasi>> listsMutasi = new ArrayList<>();
-        for (int i=0; i<accounts.size(); i++) {
-        	String accNo = accounts.get(i).getAccountNbr();
-        	//System.out.println("======> cif "+ cif);
-        	String accType = accounts.get(i).getProductTp();
-        	
-        	WsAccountHistoryRequest accountHistoryRequest = new WsAccountHistoryRequest(accNo, accType,
-        		startDate, endDate, strindex);
-        
-        	//List<Mutasi> mutasis = histService.queryAccountHistory(accountHistoryRequest);
-        	listMutasi = histService.queryAccountHistory(accountHistoryRequest);
-        	
-        	listsMutasi.add(listMutasi);
-        }
-        
-        ResponseData2 rd = new ResponseData2();       
-        rd.setAccount(accounts);
-        rd.setAccountHistory(listsMutasi);
-    	rd.setCreditCard(result);
+    public ResponseEntity<DataResponse<ResponseData2>> getInquiryAccount(@PathVariable String cifnbr) throws Exception {
+        ResponseData2 rd = useCaseService.useCaseData2(cifnbr);
         
         return DataResponse.ok(rd);
     }

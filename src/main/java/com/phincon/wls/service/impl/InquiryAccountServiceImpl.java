@@ -29,7 +29,7 @@ public class InquiryAccountServiceImpl implements InquiryAccountService {
     @Override
     public List<Account> inquiryAccount(CifNumber cif) {
         final String templateUrl = String.format("%s/INQACCT/{cifnbr}", wsInqaccUrl);
-        logs.printLog(templateUrl);
+        logs.printLog("Inquiry Account API :: "+ wsInqaccUrl);
         WsInquiryAccountResponse response = restTemplate.getForObject(templateUrl,
                 WsInquiryAccountResponse.class, cif.getCif());
         logs.printLog(response.toString());

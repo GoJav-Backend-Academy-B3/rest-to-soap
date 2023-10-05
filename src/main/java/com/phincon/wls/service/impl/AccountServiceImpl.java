@@ -96,9 +96,14 @@ public class AccountServiceImpl implements AccountService {
         JAXBContext context = JAXBContext.newInstance(SoapEnvelopeResponse.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
 
+        xmlResult = xmlResult.replaceAll("[^a-zA-Z0-9<>:=.+/ \"]", " ");
+        log.debug(xmlResult);
         // Replace with your XML string
         StringReader reader = new StringReader(xmlResult);
-        return (SoapEnvelopeResponse) unmarshaller.unmarshal(reader);
+        SoapEnvelopeResponse result = (SoapEnvelopeResponse) unmarshaller.unmarshal(reader);
+        log.debug(result.getSoapBody().getInqData().getResult().toString());
+        //return (SoapEnvelopeResponse) unmarshaller.unmarshal(reader);
+        return result;
     }
 
     private String getUserResponseXml(String soapRequestXML) {
@@ -156,17 +161,9 @@ public class AccountServiceImpl implements AccountService {
     
     
     private String xmlBody(String accNo, String accType) {
-    	String xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:inq=\"http://inqdata.wsbeans.iseries/\">\r\n" + 
-    			"   <soapenv:Header/>\r\n" + 
-    			"   <soapenv:Body>\r\n" + 
-    			"      <inq:inqdata>\r\n" + 
-    			"         <arg0>\r\n" + 
-    			"            <ACCTNBR>{acc_no}</ACCTNBR>\r\n" + 
-    			"            <ACCTTYPE>{acc_type}</ACCTTYPE>\r\n" + 
-    			"         </arg0>\r\n" + 
-    			"      </inq:inqdata>\r\n" + 
-    			"   </soapenv:Body>\r\n" + 
-    			"</soapenv:Envelope>";
+    	String xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:inq=\"http://inqdata.wsbeans.iseries/\">" + 
+    			"   <soapenv:Header/><soapenv:Body><inq:inqdata><arg0><ACCTNBR>{acc_no}</ACCTNBR>" + 
+    			"            <ACCTTYPE>{acc_type}</ACCTTYPE></arg0></inq:inqdata></soapenv:Body></soapenv:Envelope>";
     	
     	xml = xml.replace("{acc_no}", accNo);
     	xml = xml.replace("{acc_type}", accType);
@@ -182,14 +179,17 @@ public class AccountServiceImpl implements AccountService {
         String soapRequestXML = xmlBody(accNumber, accType);
 
         logs.printLog(soapRequestXML);
-
+        log.debug(soapRequestXML);
         String xmlResult = getPostUserResponseXml(soapRequestXML);
 
         logs.printLog(xmlResult);
+        log.debug(xmlResult);
+
 
         SoapEnvelopeResponse soapEnvelopeResponse = convertXmlToSoapEnvelopeResponse(xmlResult);
-
+        logs.printLog("convertXmlToSoapEnvelopeResponse Done");
         AccountResponse result = soapEnvelopeResponse.getSoapBody().getInqData().getResult();
+        logs.printLog("getResult Done");
 
 //        if (result == null) {
 //            throw new Exception("not found");
@@ -201,7 +201,7 @@ public class AccountServiceImpl implements AccountService {
     
     private String getPostUserResponseXml(String soapRequestXML) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.TEXT_XML);
+        headers.setContentType(MediaType.APPLICATION_XML);
 
         HttpEntity<String> requestEntity = new HttpEntity<>(soapRequestXML, headers);
 
@@ -214,4 +214,19 @@ public class AccountServiceImpl implements AccountService {
 
         return responseEntity.getBody();
     }
+    
+    
+    public SoapEnvelopeResponse testConvertXmlToSoapEnvelopeResponse(String xmlResult) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(SoapEnvelopeResponse.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        // Replace with your XML string
+        StringReader reader = new StringReader(xmlResult);
+        System.out.println("============");
+        SoapEnvelopeResponse result = (SoapEnvelopeResponse) unmarshaller.unmarshal(reader);
+        System.out.println("-------------");
+        return result;
+        //return (SoapEnvelopeResponse) unmarshaller.unmarshal(reader);
+    }
+
 }

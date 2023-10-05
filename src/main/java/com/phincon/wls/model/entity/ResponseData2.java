@@ -17,7 +17,8 @@ import lombok.NoArgsConstructor;
 public class ResponseData2 {
 	//AccountResponse accountResponse;
 	//List<Mutasi> mutasi;
-	List<CreditCard> creditCard;
+	//List<CreditCard> creditCard;
+	List<List<CreditCard>> creditCard;
 	List<Account> account;	
 	List<List<Mutasi>> accountHistory;
 }
